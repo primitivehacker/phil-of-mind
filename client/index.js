@@ -9,6 +9,7 @@ import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import PhilosopherIndex from './components/PhilosopherIndex';
 import requireAuth from './components/requireAuth';
+import PhilosopherCreate from './components/PhilosopherCreate';
 
 const networkInterface = createNetworkInterface({
   uri: '/graphql',
@@ -29,7 +30,9 @@ const Root = () => {
         <Route path="/" component={App}>
           <Route path="login" component={LoginForm} />
           <Route path="signup" component={SignupForm} />
+          //<Route path="philosopherIndex" component={requireAuth(PhilosopherIndex)} />
           <Route path="philosopherIndex" component={requireAuth(PhilosopherIndex)} />
+          <Route path="philosophers/new" component={PhilosopherCreate} />
         </Route>
       </Router>
     </ApolloProvider>
