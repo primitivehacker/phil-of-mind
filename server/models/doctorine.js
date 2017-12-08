@@ -52,3 +52,5 @@ DoctorineSchema.statics.findArguments = function(id) {
     .populate('arguments')
     .then(doctorine => doctorine.arguments);
 }
+
+mongoose.model('doctorine', DoctorineSchema);

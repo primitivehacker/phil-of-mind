@@ -1,5 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default () => {
-  return <div>You are logged in.</div>
-};
+class PhilosopherList extends Component {
+  render() {
+    return (
+      <div>
+        PhilosopherList
+      </div>
+    );
+  }
+}
+
+export default PhilosopherList;

@@ -14,7 +14,8 @@ const OpponentSchema = new Schema({
   doctorine: [{
     type: Schema.Types.ObjectId,
     ref: 'doctorine'
-  }]
+  }],
+  content: { type: String }
 });
 
 OpponentSchema.statics.addPhilosopher = function(id) {
@@ -52,3 +53,5 @@ OpponentSchema.statics.findArguments = function(id) {
     .populate('arguments')
     .then(opponent => opponent.arguments);
 }
+
+mongoose.model('opponent', OpponentSchema);

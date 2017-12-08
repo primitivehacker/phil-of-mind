@@ -48,3 +48,5 @@ ArgumentSchema.statics.findDoctorine = function(id) {
     .populate('doctorines')
     .then(argument => argument.doctorines);
 }
+
+mongoose.model('argument', ArgumentSchema);
