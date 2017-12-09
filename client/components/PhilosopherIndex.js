@@ -1,15 +1,30 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import { Link, hashHistory } from 'react-router';
+import { Link } from 'react-router';
+import query from '../queries/fetchPhilosophers';
 
 
 class PhilosopherList extends Component {
+  onPhilosopherDelete(id) {
+    this.props.mutate({ variables: { id } })
+      .then(() => this.props.data.refetch());
+  }
+
   renderPhilosophers() {
-    return this.props.data.philosophers.map(philosopher => {
+    return this.props.data.philosophers.map(({ id, name }) => {
       return (
-        <li key={philosopher.id} className="collection-item">
-          {philosopher.name}
+        <li key={id} className="collection-item">
+          <Link to={`/philosophers/${id}`}>
+            {name}
+          </Link>
+
+          <i
+            className="material-icons"
+            onClick={() => this.onPhilosopherDelete(id)}
+          >
+            delete
+          </i>
         </li>
       );
     });
@@ -32,13 +47,16 @@ class PhilosopherList extends Component {
   }
 }
 
-const query = gql`
-  {
-    philosophers {
+const mutation = gql`
+  mutation DeletePhilosopher($id: ID) {
+    deletePhilosopher(id: $id) {
       id
-      name
     }
   }
 `;
 
-export default graphql(query)(PhilosopherList);
+
+
+export default graphql(mutation)(
+  graphql(query)(PhilosopherList)
+);

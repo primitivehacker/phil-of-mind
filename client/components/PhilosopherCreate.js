@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Link, hashHistory } from 'react-router';
+import query from '../queries/fetchPhilosophers';
 
 
 
@@ -12,15 +13,18 @@ class PhilosopherCreate extends Component {
     this.state = { name: '' };
   }
 
+
   onSubmit(event) {
     event.preventDefault();
 
     this.props.mutate({
-      variables: {
-        name: this.state.name
-      }
+      variables: { name: this.state.name },
+      refetchQueries: [{ query }]
     }).then(() => hashHistory.push('/PhilosopherIndex'));
   }
+
+
+
 
   render() {
     return (
