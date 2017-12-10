@@ -14,7 +14,8 @@ const DoctorineSchema = new Schema({
   opponent: [{
     type: Schema.Types.ObjectId,
     ref: 'opponent'
-  }]
+  }],
+  content: { type: String }
 });
 
 DoctorineSchema.statics.addPhilosopher = function(id) {

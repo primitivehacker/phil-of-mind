@@ -23,18 +23,7 @@ const ArgumentType = new GraphQLObjectType({
             return argument.philosopher
           });
       }
-    },
-    doctorine: {
-      type: require('./doctorine_type'),
-      resolve(parentValue) {
-        return Argument.findById(parentValue).populate('doctorine')
-          .then(argument => {
-            console.log(argument)
-            return argument.doctorine
-          });
-      }
     }
-
   })
 });
 

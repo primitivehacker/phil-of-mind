@@ -3,26 +3,24 @@ import { graphql } from 'react-apollo';
 import query from '../queries/fetchPhilosophers';
 import gql from 'graphql-tag';
 
-class OpponentList extends Component {
-  onOpponentDelete(id) {
+class ArgumentList extends Component {
+  onArgumentDelete(id) {
     this.props.mutate({ variables: { id } })
       .then(() => this.props.data.refetch());
   }
 
-  renderOpponents() {
-
-    return this.props.opponents.map(({ id, content }) => {
+  renderArguments() {
+    return this.props.articleArguments.map(({ id, content }) => {
       return (
         <li key={id} className="collection-item">
-          {content}
+          { content }
 
           <i
             className="material-icons"
-            onClick={() => this.onOpponentDelete(id)}
+            onClick={() => this.onArgumentDelete(id)}
           >
             delete
           </i>
-
         </li>
       );
     });
@@ -31,20 +29,20 @@ class OpponentList extends Component {
   render() {
     return (
       <ul className="collection">
-        {this.renderOpponents()}
+        {this.renderArguments()}
       </ul>
     );
   }
 }
 
 const mutation = gql`
-  mutation deleteOpponent($id: ID) {
-    deleteOpponent(id: $id) {
+  mutation deleteArgument($id: ID) {
+    deleteArgument(id: $id) {
       id
     }
   }
 `;
 
 export default graphql(mutation)(
-  graphql(query)(OpponentList)
+  graphql(query)(ArgumentList)
 );

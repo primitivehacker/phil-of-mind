@@ -33,6 +33,7 @@ class PhilosopherList extends Component {
     if (this.props.data.loading) { return <div>Loading...</div>; }
     return (
       <div>
+        <h3>Philosophers</h3>
         <ul className="collection">
           {this.renderPhilosophers()}
         </ul>

@@ -92,7 +92,32 @@ const mutation = new GraphQLObjectType({
       resolve(parentValue, { id }) {
         return Philosopher.remove({ _id: id });
       }
+    },
+    deleteOpponent: {
+      type: OpponentType,
+      args: { id: { type: GraphQLID } },
+      resolve(parentValue, { id }) {
+        return Opponent.remove({ _id: id });
+      }
+    },
+
+    deleteArgument: {
+      type: ArgumentType,
+      args: { id: { type: GraphQLID } },
+      resolve(parentValue, { id }) {
+        return Argument.remove({ _id: id });
+      }
+    },
+
+    deleteDoctorine: {
+      type: DoctorineType,
+      args: { id: { type: GraphQLID } },
+      resolve(parentValue, { id }) {
+        return Doctorine.remove({ _id: id });
+      }
     }
+
+
 
   }
 });

@@ -67,11 +67,13 @@ PhilosopherSchema.statics.addDoctorine = function(id, content) {
     });
 }
 
-PhilosopherSchema.statics.findDoctorine = function(id) {
+PhilosopherSchema.statics.findDoctorines = function(id) {
   return this.findById(id)
     .populate('doctorines')
     .then(philosopher => philosopher.doctorines);
 }
+
+
 
 
 mongoose.model('philosopher', PhilosopherSchema);

@@ -9,6 +9,14 @@ export default gql`
         id
         content
       }
+      doctorines {
+        id
+        content
+      }
+      arguments {
+        id
+        content
+      }
     }
   }
 `;

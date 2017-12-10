@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
-
-class OpponentCreate extends Component {
+class DoctorineCreate extends Component {
   constructor(props) {
     super(props);
 
@@ -19,30 +18,25 @@ class OpponentCreate extends Component {
         philosopherId: this.props.philosopherId
       }
     }).then(() => this.setState({ content: '' }));
-
-
   }
-
   render() {
     return (
-
-        <form onSubmit={this.onSubmit.bind(this)}>
-          <label>Add an Opponent</label>
-          <input
-            value={this.state.content}
-            onChange={event => this.setState({ content: event.target.value })}
-          />
-        </form>
-
+      <form onSubmit={this.onSubmit.bind(this)}>
+        <label>Add a Doctorine</label>
+        <input
+          value={this.state.content}
+          onChange={event => this.setState({ content: event.target.value})}
+        />
+      </form>
     );
   }
 }
 
 const mutation = gql`
-  mutation AddOpponentToPhilosopher($content: String, $philosopherId: ID) {
-    addOpponentToPhilosopher(content: $content, philosopherId: $philosopherId) {
+  mutation AddDoctorineToPhilosopher($content: String, $philosopherId: ID) {
+    addDoctorineToPhilosopher(content: $content, philosopherId: $philosopherId) {
       id
-      opponents {
+      doctorines {
         id
         content
       }
@@ -50,4 +44,4 @@ const mutation = gql`
   }
 `;
 
-export default graphql(mutation)(OpponentCreate);
+export default graphql(mutation)(DoctorineCreate);
